@@ -22,18 +22,8 @@ return [
             // 缓存标签前缀
             'tag_prefix' => 'tag:',
             // 序列化机制 例如 ['serialize', 'unserialize']
-            'serialize'  => ['json_encode','json_decode']
+            'serialize'  => [],
         ],
-        // redis 缓存
-        'redis'   =>  [
-            // 驱动方式
-            'type'   => 'redis',
-            // 服务器地址
-            'host'       => env('cache.stores-redis-host', ''),
-            // 密码
-            'password'   => env('cache.stores-redis-password', ''),
-            // 序列化机制 例如 ['serialize', 'unserialize']
-            'serialize'  => ['json_encode','json_decode']
-        ],
+        // 更多的缓存连接
     ],
 ];

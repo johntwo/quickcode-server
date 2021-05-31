@@ -14,8 +14,6 @@ return [
     'close'        => false,
     // 全局日志处理 支持闭包
     'processor'    => null,
-    // 记录trace信息
-    'record_trace' => true,
 
     // 日志通道列表
     'channels'     => [
@@ -29,7 +27,7 @@ return [
             // 独立日志级别
             'apart_level'    => [],
             // 最大日志文件数量
-            'max_files'      => 50,
+            'max_files'      => 0,
             // 使用JSON格式记录
             'json'           => false,
             // 日志处理
