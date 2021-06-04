@@ -1,13 +1,14 @@
 <?php
 namespace app\admin\controller;
 
-use app\admin\middleware\Auth;
+use app\BaseController;
+use OpenApi\Generator;
 
-class Index extends ControllerBase
+class Index extends BaseController
 {
     /**
-     * @OA\Post(
-     *   path="/index/index",
+     * @OA\Get(
+     *   path="/index",
      *   summary="首页接口",
      *   @OA\Parameter(name="userId", in="query", @OA\Schema(type="string"), required=true, description="用户ID"),
      *   @OA\Response(
@@ -22,7 +23,6 @@ class Index extends ControllerBase
      */
     public function index()
     {
-        return result()->data(Auth::$CurrentUser)->toJson();
-        //这是自定义返回code的，默认是0        return result()->data(['title'=>'这是测试的主页接口'])->code(CodeBase::$Fail)->toJson();
+        return "主页";
     }
 }
