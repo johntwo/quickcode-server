@@ -9,9 +9,7 @@ class Index extends ControllerBase
      */
     public function config()
     {
-        return result()
-            ->data($this->logicIndex->config())
-            ->toJson();
+        return json($this->logicIndex->config());
     }
 
     /**

@@ -53,9 +53,17 @@ class ExceptionHandle extends Handle
     {
         // 添加自定义异常处理机制
         if ($request->isAjax() || $request->isJson()) {
-            return result()
-                ->code(['code' => -1, 'message' => $e->getMessage()])
-                ->toJson();
+            if($e instanceof HttpException){
+                return result()
+                    ->code(['code' => $e->getCode(), 'message' => $e->getMessage()])
+                    ->statusCode($e->getStatusCode())
+                    ->toJson();
+            }else{
+                return result()
+                    ->code(['code' => -1, 'message' => $e->getMessage()])
+                    ->statusCode($e->getStatusCode())
+                    ->toJson();
+            }
         }
 
         // 其他错误交给系统处理
