@@ -3,7 +3,7 @@ namespace app\swagger\logic;
 
 use OpenApi\Generator;
 
-class Index
+class Index extends LogicBase
 {
     /**
      * swagger  模块配置信息
