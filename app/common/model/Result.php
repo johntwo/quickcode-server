@@ -15,10 +15,12 @@ class Result
 {
     protected $code;
     protected $data;
+    protected $statusCode;
 
     public function __construct()
     {
         $this->code = CodeBase::$Success;
+        $this->statusCode = 200;
     }
 
     public function data($data)
@@ -32,6 +34,11 @@ class Result
         return $this;
     }
 
+    public function statusCode(int $code){
+        $this->statusCode = $code;
+        return $this;
+    }
+
     public function toJson():Json
     {
         $result = [
@@ -41,6 +48,6 @@ class Result
             'rid'=>RID
         ];
 
-        return json($result);
+        return json($result,$this->statusCode);
     }
 }
