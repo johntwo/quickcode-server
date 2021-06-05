@@ -1,0 +1,43 @@
+<?php
+
+
+namespace app\common\model;
+
+
+use think\response\Json;
+
+/**
+ * Class Result
+ * @package app\common\model
+ * json返回对象
+ */
+class Result
+{
+    protected $code;
+    protected $data;
+
+    public function __construct()
+    {
+        $this->code = CodeBase::$Success;
+    }
+
+    public function data($data)
+    {
+        $this->data = $data;
+        return $this;
+    }
+
+    public function code(array $code){
+        $this->code = $code;
+    }
+
+    public function toJson():Json
+    {
+        $result = [
+            'code'=>$this->code['code'],
+            'data'=>$this->data,
+            'message'=>$this->code['message']
+        ];
+        return json($result);
+    }
+}
