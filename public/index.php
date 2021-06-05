@@ -19,6 +19,8 @@ $http = (new App())->http;
 
 $response = $http->run();
 
+$response->header(['rid'=>RID]);
+
 $response->send();
 
 $http->end($response);

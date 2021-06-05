@@ -29,6 +29,7 @@ class Result
 
     public function code(array $code){
         $this->code = $code;
+        return $this;
     }
 
     public function toJson():Json
@@ -36,8 +37,10 @@ class Result
         $result = [
             'code'=>$this->code['code'],
             'data'=>$this->data,
-            'message'=>$this->code['message']
+            'message'=>$this->code['message'],
+            'rid'=>RID
         ];
+
         return json($result);
     }
 }
