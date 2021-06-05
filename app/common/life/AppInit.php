@@ -11,7 +11,8 @@ class AppInit
      */
     public function handle()
     {
-
+        // 初始化贯穿请求的 唯一 id
+        $this->initRid();
     }
 
     /**
