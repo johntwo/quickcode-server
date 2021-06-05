@@ -2,13 +2,12 @@
 namespace app\admin\controller;
 
 use app\BaseController;
-use OpenApi\Generator;
 
 class Index extends BaseController
 {
     /**
      * @OA\Get(
-     *   path="/index",
+     *   path="/index/index",
      *   summary="首页接口",
      *   @OA\Parameter(name="userId", in="query", @OA\Schema(type="string"), required=true, description="用户ID"),
      *   @OA\Response(
