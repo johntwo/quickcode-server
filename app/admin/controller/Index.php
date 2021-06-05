@@ -2,6 +2,8 @@
 namespace app\admin\controller;
 
 use app\BaseController;
+use http\Exception;
+use think\exception\HttpException;
 
 class Index extends BaseController
 {
