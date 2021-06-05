@@ -61,7 +61,6 @@ class ExceptionHandle extends Handle
             }else{
                 return result()
                     ->code(['code' => -1, 'message' => $e->getMessage()])
-                    ->statusCode($e->getStatusCode())
                     ->toJson();
             }
         }
