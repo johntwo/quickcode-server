@@ -6,8 +6,8 @@ return [
 
     'listen'    => [
         'AppInit'  => [\app\common\life\AppInit::class],
-        'HttpRun'  => [],
-        'HttpEnd'  => [],
+        'HttpRun'  => [\app\common\life\HttpRun::class],
+        'HttpEnd'  => [\app\common\life\HttpEnd::class],
         'LogLevel' => [],
         'LogWrite' => [],
     ],
