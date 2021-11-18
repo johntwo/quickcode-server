@@ -23,7 +23,7 @@ class InitUserData extends Seeder
                 'updater'=>1,
                 'username'=>'admin',
                 'nickname'=>'超级管理员',
-                'password'=>'$2y$10$SirAiO5S8zTbmSAJzm2iOuzeFj4qe8lvTBI58tPl1Z4NGl5KkqVEm',
+                'password'=>'',
                 'create_time'=>'2021-11-17 17:06:56',
                 'update_time'=>'2021-11-17 17:06:56'
             ]
