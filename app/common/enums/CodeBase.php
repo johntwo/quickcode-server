@@ -9,7 +9,7 @@
 // | Repository | https://gitee.com/Bigotry/OneBase                      |
 // +---------------------------------------------------------------------+
 
-namespace app\common\model;
+namespace app\common\enums;
 
 class CodeBase
 {

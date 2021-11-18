@@ -68,9 +68,9 @@ function cleanStr($str, $other = ['*'])
 /**
  * 接口返回对象
  */
-function result(): \app\common\model\Result
+function result(): \app\common\dto\Result
 {
-    return new \app\common\model\Result();
+    return new \app\common\dto\Result();
 }
 
 /**

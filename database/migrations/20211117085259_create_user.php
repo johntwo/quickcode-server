@@ -28,7 +28,7 @@ class CreateUser extends Migrator
      */
     public function change()
     {
-        $table = $this->table("user",['comment'=>'用户','engine'=>'Innodb','collation'=>'utf8mb4_general_ci']);
+        $table = $this->table("user",['engine'=>'Innodb']);
         // 表必备字段
         $table->addColumn(Column::string('uuid')->setLimit(32)->setComment('唯一编号'));
         $table->addColumn(Column::integer('creator')->setLimit(11)->setComment('创建者id'));
@@ -39,7 +39,7 @@ class CreateUser extends Migrator
         // 业务字段
         $table->addColumn(Column::string('username')->setLimit(50)->setComment('用户名'));
         $table->addColumn(Column::string('nickname')->setLimit(50)->setComment('用户昵称'));
-        $table->addColumn(Column::string('password')->setLimit(100)->setComment('用户登录密码'));
+        $table->addColumn(Column::char('password')->setLimit(32)->setComment('用户登录密码'));
         $table->addColumn(Column::char('phone')->setLimit(11)->setDefault('')->setComment('手机号码'));
         $table->addColumn(Column::char('email')->setLimit(50)->setDefault('')->setComment('邮箱'));
         $table->addColumn(Column::tinyInteger('sex')->setLimit(1)->setDefault(0)->setComment('性别，0-无性别|1-男|2-女'));
