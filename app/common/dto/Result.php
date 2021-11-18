@@ -1,10 +1,13 @@
 <?php
 
 
-namespace app\common\model;
+namespace app\common\dto;
 
 
+use app\common\enums\CodeBase;
 use think\response\Json;
+use function json;
+use const RID;
 
 /**
  * Class Result

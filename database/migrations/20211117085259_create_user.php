@@ -3,7 +3,7 @@
 use think\migration\Migrator;
 use think\migration\db\Column;
 
-class CreateMember extends Migrator
+class CreateUser extends Migrator
 {
     /**
      * Change Method.
@@ -28,7 +28,7 @@ class CreateMember extends Migrator
      */
     public function change()
     {
-        $table = $this->table("member",['engine'=>'Innodb']);
+        $table = $this->table("user",['engine'=>'Innodb']);
         // 表必备字段
         $table->addColumn(Column::string('uuid')->setLimit(32)->setComment('唯一编号'));
         $table->addColumn(Column::integer('creator')->setLimit(11)->setComment('创建者id'));

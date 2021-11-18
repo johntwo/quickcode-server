@@ -2,6 +2,7 @@
 namespace app\admin\controller;
 
 use app\BaseController;
+use app\common\enums\CodeBase;
 use http\Exception;
 use think\exception\HttpException;
 
@@ -24,6 +25,7 @@ class Index extends BaseController
      */
     public function index()
     {
-        return "主页";
+        return result()->data(['title'=>'这是测试的主页接口'])->toJson();
+//这是自定义返回code的，默认是0        return result()->data(['title'=>'这是测试的主页接口'])->code(CodeBase::$Fail)->toJson();
     }
 }
