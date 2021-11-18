@@ -9,5 +9,7 @@ namespace app\admin\controller;
  */
 class Swagger
 {
-
+    /**
+     * 每一个模块的controller下面都需要默认创建这个文件，api文档才可以正常展示
+     */
 }
