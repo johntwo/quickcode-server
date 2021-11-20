@@ -12,20 +12,11 @@ class CacheKey
 {
     /**
      * @return CacheKeyBuilder
-     * 后台登录 token key
+     * token构造器
      */
-    public static function loginAdminToken(): CacheKeyBuilder
+    public static function token(): CacheKeyBuilder
     {
-        return new CacheKeyBuilder(['Login','Token', 'Admin']);
-    }
-
-    /**
-     * @return CacheKeyBuilder
-     * app登录 token key
-     */
-    public static function loginAppToken(): CacheKeyBuilder
-    {
-        return new CacheKeyBuilder(['Login','Token', 'App']);
+        return new CacheKeyBuilder(['admin', 'user']);
     }
 
 }
