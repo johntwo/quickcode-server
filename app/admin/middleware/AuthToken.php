@@ -22,6 +22,7 @@ class AuthToken
                     \exception("当前未登录，请登录");
                 }
             }
+            Auth::$CurrentUser = $userInfo;
         }
 
         return $next($request);
