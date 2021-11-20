@@ -1,6 +1,8 @@
 <?php
 namespace app\admin\controller;
 
+use app\admin\middleware\Auth;
+
 class Index extends ControllerBase
 {
     /**
@@ -20,7 +22,7 @@ class Index extends ControllerBase
      */
     public function index()
     {
-        return result()->data(['title'=>1])->toJson();
+        return result()->data(Auth::$CurrentUser)->toJson();
         //这是自定义返回code的，默认是0        return result()->data(['title'=>'这是测试的主页接口'])->code(CodeBase::$Fail)->toJson();
     }
 }
