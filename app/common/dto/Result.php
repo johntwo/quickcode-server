@@ -4,7 +4,7 @@
 namespace app\common\dto;
 
 
-use app\common\enums\CodeBase;
+use app\common\config\result\CodeBase;
 use think\response\Json;
 use function json;
 use const RID;
