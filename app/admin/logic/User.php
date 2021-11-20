@@ -29,6 +29,6 @@ class User extends LogicBase
 
         cache(CacheKey::loginAdminToken()->key([$user['id']]),null);
         cache(CacheKey::loginAdminToken()->key([$user['id']]),$tokenObj);
-        return ['token'=>$token];
+        return ['token'=>$token['token']];
     }
 }
