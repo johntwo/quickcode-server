@@ -23,12 +23,11 @@ class User extends LogicBase
         assert($commonLogicUser->verifyPassword($user['id'],$data['password']),'用户密码不正确');
 
         $token = Auth::buildToken($user['id']);
-        $tokenObj = $user;
         $user['token_uuid'] = $token['uuid'];
 
 
         cache(CacheKey::loginAdminToken()->key([$user['id']]),null);
-        cache(CacheKey::loginAdminToken()->key([$user['id']]),$tokenObj);
+        cache(CacheKey::loginAdminToken()->key([$user['id']]),$user);
         return ['token'=>$token['token']];
     }
 }
