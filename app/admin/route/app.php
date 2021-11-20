@@ -9,4 +9,5 @@
 // | Author: zhangkai
 // +----------------------------------------------------------------------
 use think\facade\Route;
-Route::get('Index/index$', '/admin/Index/index');
+Route::get('Index/index$', '/admin/Index/index')->middleware(\app\admin\middleware\AuthToken::class);
+Route::post('User/login$', '/admin/User/login');
