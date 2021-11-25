@@ -90,7 +90,7 @@ function uuid()
 /**
  * 报错
  */
-function exception($message = '请求失败', $statusCode = 200,$code = -1)
+function exception($message = '请求失败', $code = -1, $statusCode = 200)
 {
     throw new \think\exception\HttpException($statusCode, $message, null, [], $code);
 }
