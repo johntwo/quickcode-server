@@ -1,6 +1,9 @@
 <?php
 namespace app\admin\controller;
 
+use app\admin\middleware\Auth;
+use app\admin\middleware\AuthToken;
+
 class User extends ControllerBase
 {
     /**
@@ -22,5 +25,19 @@ class User extends ControllerBase
     public function login()
     {
         return result()->data($this->logicUser->login(request()->param()))->toJson();
+    }
+
+    /**
+     * @OA\Get(
+     *   path="/user/current",
+     *   summary="获取当前登录用户的信息",
+     *   @OA\Response(
+     *     response=200,
+     *     description="返回当前登录用户信息"
+     *   )
+     * )
+     */
+    public function current(){
+        return result()->data($this->logicUser->current(Auth::$CurrentUser))->toJson();
     }
 }
