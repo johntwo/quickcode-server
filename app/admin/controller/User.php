@@ -40,4 +40,18 @@ class User extends ControllerBase
     public function current(){
         return result()->data($this->logicUser->current(Auth::$CurrentUser))->toJson();
     }
+
+    /**
+     * @OA\Delete   (
+     *   path="/user/logout",
+     *   summary="退出登录",
+     *   @OA\Response(
+     *     response=200,
+     *     description="返回当前登录用户信息"
+     *   )
+     * )
+     */
+    public function logout(){
+        return result()->data($this->logicUser->logout(Auth::$CurrentUser))->toJson();
+    }
 }
