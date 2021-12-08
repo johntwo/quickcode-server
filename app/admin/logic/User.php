@@ -38,4 +38,11 @@ class User extends LogicBase
     public function current($userInfo){
         return \app\common\model\User::find($userInfo->id);
     }
+
+    /**
+     * 登出
+     */
+    public function logout($userInfo){
+        cache(CacheKey::loginAdminToken()->key([$userInfo->id]),null);
+    }
 }

@@ -14,4 +14,5 @@ Route::post('User/login$', '/admin/User/login');
 // 需要登录的路由
 Route::group(function(){
     Route::get('User/current', '/admin/User/current');
+    Route::delete('User/logout', '/admin/User/logout');
 })->middleware(\app\admin\middleware\AuthToken::class);
