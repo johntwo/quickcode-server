@@ -6,7 +6,7 @@
 
 return [
     // 默认短信驱动
-    'default' => env('sms.driver', 'tencent'),
+    'default' => env('sms.driver', 'alibaba'),
 
     // 短信驱动配置
     'drivers'  => [
@@ -20,10 +20,18 @@ return [
             'secretKey' => '',
             // SmsSdkAppId
             'smsSdkAppId'=> '',
-            // 是否记录日志
-            'isLog'=>false,
             // 签名信息
-            'signName'=>'送炭信息科技'
+            'signName'=>''
+        ],
+        'alibaba'=>[
+            // 类型
+            'type'=>'Alibaba',
+            // accessKeyId
+            'accessKeyId'=>'',
+            // accessKeySecret
+            'accessKeySecret'=>'',
+            // 签名
+            'signName'=>''
         ]
     ],
 ];

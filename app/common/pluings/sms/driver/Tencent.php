@@ -48,9 +48,9 @@ class Tencent implements SmsInterface
      * @param $params
      * @var $params['phoneNumbers'] 手机号码数组
      * @var $params['templateId'] 模板id
-     * @var $params['templateParams'] 模板参数
+     * @var $params['templateParam'] 模板参数
      *
-     * 样例 ['phoneNumbers'=>['17785695963'],'templateId'=>'1228466','templateParams'=>['1025','10']]
+     * 样例 ['phoneNumbers'=>['17785695963'],'templateId'=>'1228466','templateParam'=>['1025','10']]
      *
      * @return mixed
      */
@@ -109,7 +109,7 @@ class Tencent implements SmsInterface
         /* 模板 ID: 必须填写已审核通过的模板 ID。模板ID可登录 [短信控制台] 查看 */
         $req->TemplateId = $params['templateId'];
         /* 模板参数: 若无模板参数，则设置为空*/
-        $req->TemplateParamSet = $params['templateParams'];
+        $req->TemplateParamSet = $params['templateParam'];
 
         // 通过client对象调用SendSms方法发起请求。注意请求方法名与请求对象是对应的
         // 返回的resp是一个SendSmsResponse类的实例，与请求对象对应
