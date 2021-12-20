@@ -46,11 +46,11 @@ class Tencent implements SmsInterface
 
     /**
      * @param $params
-     * @var $params['PhoneNumberSet'] 手机号码数组
-     * @var $params['TemplateId'] 模板id
-     * @var $params['TemplateParamSet'] 模板参数
+     * @var $params['phoneNumbers'] 手机号码数组
+     * @var $params['templateId'] 模板id
+     * @var $params['templateParams'] 模板参数
      *
-     * 样例 ['PhoneNumberSet'=>['17785695963'],'TemplateId'=>'1228466','TemplateParamSet'=>['1025','10']]
+     * 样例 ['phoneNumbers'=>['17785695963'],'templateId'=>'1228466','templateParams'=>['1025','10']]
      *
      * @return mixed
      */
@@ -101,15 +101,15 @@ class Tencent implements SmsInterface
         $req->ExtendCode = "";
         /* 下发手机号码，采用 E.164 标准，+[国家或地区码][手机号]
          * 示例如：+8613711112222， 其中前面有一个+号 ，86为国家码，13711112222为手机号，最多不要超过200个手机号*/
-        $req->PhoneNumberSet = $params['PhoneNumberSet'];
+        $req->PhoneNumberSet = $params['phoneNumbers'];
         /* 国际/港澳台短信 SenderId: 国内短信填空，默认未开通，如需开通请联系 [sms helper] */
         $req->SenderId = "";
         /* 用户的 session 内容: 可以携带用户侧 ID 等上下文信息，server 会原样返回 */
         $req->SessionContext = "";
         /* 模板 ID: 必须填写已审核通过的模板 ID。模板ID可登录 [短信控制台] 查看 */
-        $req->TemplateId = $params['TemplateId'];
+        $req->TemplateId = $params['templateId'];
         /* 模板参数: 若无模板参数，则设置为空*/
-        $req->TemplateParamSet = $params['TemplateParamSet'];
+        $req->TemplateParamSet = $params['templateParams'];
 
         // 通过client对象调用SendSms方法发起请求。注意请求方法名与请求对象是对应的
         // 返回的resp是一个SendSmsResponse类的实例，与请求对象对应
