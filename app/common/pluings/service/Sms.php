@@ -22,7 +22,7 @@ class Sms extends \think\Facade
      * \app\common\pluings\service\Sms::send([
     'phoneNumbers'=>['17751411980'],
     'templateId'=>'1231241',
-    'templateParams'=>['1025','10']
+    'templateParam'=>['1025','10']
     ])
      */
 
