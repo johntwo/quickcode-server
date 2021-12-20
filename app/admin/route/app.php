@@ -9,7 +9,7 @@
 // | Author: zhangkai
 // +----------------------------------------------------------------------
 use think\facade\Route;
-Route::get('Index/index$', '/admin/Index/index')->middleware(\app\admin\middleware\AuthToken::class);
+Route::get('Index/index$', '/admin/Index/index');
 Route::post('User/login$', '/admin/User/login');
 // 需要登录的路由
 Route::group(function(){
