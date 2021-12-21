@@ -10,7 +10,7 @@ return [
 
     // 短信驱动配置
     'drivers'  => [
-        // 腾讯短信
+        // 腾讯驱动
         'tencent' => [
             // 类型
             'type'=>'Tencent',
@@ -23,6 +23,7 @@ return [
             // 签名信息
             'signName'=>''
         ],
+        // 阿里巴巴驱动
         'alibaba'=>[
             // 类型
             'type'=>'Alibaba',
