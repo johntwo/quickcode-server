@@ -5,5 +5,6 @@
  * Date 2021/12/20   15:58
  */
 return [
-    'sms'=> \app\common\pluings\sms\Driver::class, // 短信服务
+    'sms' => \app\common\pluings\sms\Driver::class, // 短信服务
+    'oss' => \app\common\pluings\oss\Driver::class  // 对象存储服务
 ];
