@@ -66,73 +66,15 @@ class Tencent implements OssInterface
             'durationSeconds' => $this->options['durationSeconds'], // 密钥有效期
             'allowPrefix' => empty($options['allowPrefix'])?'*':$options['allowPrefix'], // 这里改成允许的路径前缀，可以根据自己网站的用户登录态判断允许上传的具体路径，例子： a.jpg 或者 a/* 或者 * (使用通配符*存在重大安全风险, 请谨慎评估使用)
             // 密钥的权限列表。简单上传和分片需要以下的权限，其他权限列表请看 https://cloud.tencent.com/document/product/436/31923
-            'allowActions' => empty($options['allowActions'])?$this->options['allowActions']:$options['allowActions']
+            'allowActions' => array (
+                // 简单上传
+                'name/cos:PutObject',
+                'name/cos:PostObject'
+            )
         );
         // 获取临时密钥，计算签名
-        try{
-            $result = $this->sts->getTempKeys($config);
-            $result['bucket'] = $config['bucket'];
-            $result['region'] = $config['region'];
-            $this->setCache($result,['expire'=>$this->options['durationSeconds']-60]);
-            return $result;
-        }catch (\Exception $e){
-            exception("数据获取失败");
-        }
-
-    }
-
-    public function convertToDatabaseData($data){
-        $savedKeys = ['originName','name','bucket','region'];
-        $saveObj = null;
-
-        if(is_string($data)){
-            $data = json_decode($data,true);
-        }
-
-        if(is_array($data)){
-            $saveObj = $data;
-        }else if(is_object($data)){
-            $saveObj = [$data];
-        }
-
-        $result = [];
-        // 检查数组的每一条记录是否正确
-        foreach ($saveObj as $item){
-            $itemArr = [];
-            foreach ($savedKeys as $key){
-                if(empty($item[$key])){
-                    exception("数据异常");
-                }else {
-                    $itemArr[$key] = $item[$key];
-                }
-            }
-            if(empty($item['url'])){
-                $itemArr['url'] = 'https://'.$item['bucket'].'.cos.'.$item['region'].'.myqcloud.com/'.$item['name'];
-            }else{
-                $itemArr['url'] = $item['url'];
-            }
-            array_push($result,$itemArr);
-        }
-
-        return json_encode($result,JSON_UNESCAPED_UNICODE);
-    }
-
-    public function convertToEntityData($data)
-    {
-        $result = json_decode($data,true);
-        if(!empty($result)){
-            foreach ($result as &$item){
-                try{
-                    if(!empty($item) && empty($item['url'])){
-                        $item['url'] = 'https://'.$item['bucket'].'.cos.'.$item['region'].'.myqcloud.com/'.$item['name'];
-                    }
-                }catch (\Exception $e){
-
-                }
-
-            }
-        }
-
+        $result = $this->sts->getTempKeys($config);
+        $this->setCache($result,['expire'=>$result['expiredTime']-time()]);
         return $result;
     }
 }

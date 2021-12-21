@@ -1,11 +1,11 @@
 <?php
 
 // +----------------------------------------------------------------------
-// | oss设置  zhangkai
+// | 短信设置
 // +----------------------------------------------------------------------
 
 return [
-    // 默认oss驱动
+    // 默认短信驱动
     'default' => env('oss.driver', 'tencent'),
 
     // oss驱动配置
@@ -15,17 +15,15 @@ return [
             // 类型
             'type'=>'Tencent',
             // $secretId
-            'secretId' => env('oss.drivers-tencent-secretId', ''),
+            'secretId' => '',
             // $secretKey
-            'secretKey' => env('oss.drivers-tencent-secretKey', ''),
+            'secretKey' => '',
             // sts token 过期时间 秒
-            'durationSeconds' => env('oss.drivers-tencent-durationSeconds', ''),
+            'durationSeconds' => 1800,
             // region bucket所在的区域
-            'region' => env('oss.drivers-tencent-region', ''),
+            'region' => 'ap-guangzhou',
             // 默认的存储桶 名称
-            'default_bucket' => env('oss.drivers-tencent-default_bucket', ''),
-            // 允许的操作类型
-            'allowActions' => explode(',',env('oss.drivers-tencent-allowActions', ''))
+            'default_bucket' => ''
         ]
     ],
 ];
