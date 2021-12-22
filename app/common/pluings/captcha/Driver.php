@@ -33,7 +33,6 @@ class Driver
         $config = $this->getConfig($type);
         $code = $this->buildVerificationCode();
         $this->setCache($code,['expire'=>$config['expire']]);
-        return $code;
     }
 
     /**
