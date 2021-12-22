@@ -74,6 +74,8 @@ class Tencent implements OssInterface
         );
         // 获取临时密钥，计算签名
         $result = $this->sts->getTempKeys($config);
+        $result['bucket'] = $config['bucket'];
+        $result['region'] = $config['region'];
         $this->setCache($result,['expire'=>$result['expiredTime']-time()]);
         return $result;
     }
