@@ -15,4 +15,5 @@ class CodeBase
 {
     public static $Success             = ['code' => 0,   'message' => '操作成功'];
     public static $Fail             = ['code' => -1,   'message' => '操作失败'];
+    public static $UnLogin            = ['code' => 10000,   'message' => '当前未登录'];
 }
