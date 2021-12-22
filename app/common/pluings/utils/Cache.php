@@ -14,7 +14,12 @@ trait Cache
     public function getCacheKey(){
         $class = get_class($this);
         $cacheKeys = explode("\\",$class);
-        array_push($cacheKeys,$this->cacheKey);
+
+        if(is_array($this->cacheKey)){
+            $cacheKeys = array_merge($cacheKeys,$this->cacheKey);
+        }else{
+            array_push($cacheKeys,$this->cacheKey);
+        }
 
         return implode(':',$cacheKeys);
     }
