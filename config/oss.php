@@ -23,7 +23,13 @@ return [
             // region bucket所在的区域
             'region' => 'ap-guangzhou',
             // 默认的存储桶 名称
-            'default_bucket' => ''
+            'default_bucket' => '',
+            // 允许的操作类型
+            'allowActions' => [
+                // 简单上传
+                'name/cos:PutObject',
+                'name/cos:PostObject'
+            ]
         ]
     ],
 ];

@@ -66,11 +66,7 @@ class Tencent implements OssInterface
             'durationSeconds' => $this->options['durationSeconds'], // 密钥有效期
             'allowPrefix' => empty($options['allowPrefix'])?'*':$options['allowPrefix'], // 这里改成允许的路径前缀，可以根据自己网站的用户登录态判断允许上传的具体路径，例子： a.jpg 或者 a/* 或者 * (使用通配符*存在重大安全风险, 请谨慎评估使用)
             // 密钥的权限列表。简单上传和分片需要以下的权限，其他权限列表请看 https://cloud.tencent.com/document/product/436/31923
-            'allowActions' => array (
-                // 简单上传
-                'name/cos:PutObject',
-                'name/cos:PostObject'
-            )
+            'allowActions' => empty($options['allowActions'])?$this->options['allowActions']:$options['allowActions']
         );
         // 获取临时密钥，计算签名
         $result = $this->sts->getTempKeys($config);
