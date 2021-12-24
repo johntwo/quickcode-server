@@ -16,4 +16,15 @@ interface OssInterface
      * @return mixed
      */
     public function getStsToken($options);
+
+    /**
+     * 格式化城数据库对象
+     * @return mixed
+     */
+    public function convertToDatabaseData($data);
+
+    /**
+     * 数据库对象格式化成程序对象
+     */
+    public function convertToEntityData($data);
 }

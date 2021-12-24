@@ -21,7 +21,7 @@ return [
             // sts token 过期时间 秒
             'durationSeconds' => 1800,
             // region bucket所在的区域
-            'region' => 'ap-guangzhou',
+            'region' => 'ap-shanghai',
             // 默认的存储桶 名称
             'default_bucket' => '',
             // 允许的操作类型

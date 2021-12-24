@@ -75,4 +75,59 @@ class Tencent implements OssInterface
         $this->setCache($result,['expire'=>$result['expiredTime']-time()]);
         return $result;
     }
+
+    public function convertToDatabaseData($data){
+        $savedKeys = ['originName','name','bucket','region'];
+        $saveObj = null;
+
+        if(is_string($data)){
+            $data = json_decode($data,true);
+        }
+
+        if(is_array($data)){
+            $saveObj = $data;
+        }else if(is_object($data)){
+            $saveObj = [$data];
+        }
+
+        $result = [];
+        // 检查数组的每一条记录是否正确
+        foreach ($saveObj as $item){
+            $itemArr = [];
+            foreach ($savedKeys as $key){
+                if(empty($item[$key])){
+                    exception("数据异常");
+                }else {
+                    $itemArr[$key] = $item[$key];
+                }
+            }
+            if(empty($item['url'])){
+                $itemArr['url'] = 'https://'.$item['bucket'].'.cos.'.$item['region'].'.myqcloud.com/'.$item['name'];
+            }else{
+                $itemArr['url'] = $item['url'];
+            }
+            array_push($result,$itemArr);
+        }
+
+        return json_encode($result,JSON_UNESCAPED_UNICODE);
+    }
+
+    public function convertToEntityData($data)
+    {
+        $result = json_decode($data,true);
+        if(!empty($result)){
+            foreach ($result as &$item){
+                try{
+                    if(!empty($item) && empty($item['url'])){
+                        $item['url'] = 'https://'.$item['bucket'].'.cos.'.$item['region'].'.myqcloud.com/'.$item['name'];
+                    }
+                }catch (\Exception $e){
+
+                }
+
+            }
+        }
+
+        return $result;
+    }
 }
