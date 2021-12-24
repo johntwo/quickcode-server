@@ -69,11 +69,16 @@ class Tencent implements OssInterface
             'allowActions' => empty($options['allowActions'])?$this->options['allowActions']:$options['allowActions']
         );
         // 获取临时密钥，计算签名
-        $result = $this->sts->getTempKeys($config);
-        $result['bucket'] = $config['bucket'];
-        $result['region'] = $config['region'];
-        $this->setCache($result,['expire'=>$result['expiredTime']-time()]);
-        return $result;
+        try{
+            $result = $this->sts->getTempKeys($config);
+            $result['bucket'] = $config['bucket'];
+            $result['region'] = $config['region'];
+            $this->setCache($result,['expire'=>$result['expiredTime']-time()]);
+            return $result;
+        }catch (\Exception $e){
+            exception("数据获取失败");
+        }
+
     }
 
     public function convertToDatabaseData($data){
