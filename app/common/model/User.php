@@ -2,6 +2,7 @@
 
 namespace app\common\model;
 
+use app\common\pluings\service\Oss;
 use think\model\concern\SoftDelete;
 
 /**
@@ -22,4 +23,21 @@ class User extends ModelBase
         }
         $this->save($data);
     }
+
+    /**
+     * 属性修改器
+     */
+    public function setAvatorAttr($value)
+    {
+        return Oss::convertToDatabaseData($value);
+    }
+
+    /**
+     * 属性获取器
+     */
+    public function getAvatorAttr($value)
+    {
+        return Oss::convertToEntityData($value);
+    }
+
 }

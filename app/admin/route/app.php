@@ -15,4 +15,5 @@ Route::post('User/login$', '/admin/User/login');
 Route::group(function(){
     Route::get('User/current', '/admin/User/current');
     Route::delete('User/logout', '/admin/User/logout');
+    Route::get('oss/getOssToken', '/admin/oss/getOssToken');
 })->middleware(\app\admin\middleware\AuthToken::class);

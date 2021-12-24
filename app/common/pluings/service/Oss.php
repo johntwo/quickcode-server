@@ -7,6 +7,8 @@ namespace  app\common\pluings\service;
  * Date 2021/12/18   11:45
  * @see \app\common\pluings\sms\Driver
  * @method static mixed getStsToken($params) 获取sts token
+ * @method static mixed convertToDatabaseData($data) 序列化
+ * @method static mixed convertToEntityData($data) 反序列化
  */
 class Oss extends \think\Facade
 {
