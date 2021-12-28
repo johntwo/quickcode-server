@@ -22,5 +22,6 @@ class HttpRun
         UtilsLog::record($host,'HOST');
         UtilsLog::record(request()->header(),'HEADER');
         UtilsLog::record(request()->param(),'PARAM');
+        UtilsLog::record(request()->getInput(),'INPUT');
     }
 }
