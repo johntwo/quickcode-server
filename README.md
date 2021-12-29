@@ -50,10 +50,10 @@ Pay::order([
 ### 支付成功验证
 ```php
 Pay::paidNotify(function($message){
-            // $message 是微信回调的参数，验签通过才会进入这个方法
+        // $message 是微信回调的参数，验签通过才会进入这个方法
 
-            // 自己的验证逻辑
+        // 自己的验证逻辑
 
-            return true;// 支付成功返回true，否则返回其他String信息即可
+        return true;// 支付成功返回true，否则返回其他String信息即可
 });
 ```
