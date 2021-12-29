@@ -8,7 +8,7 @@ return [
     // 默认支付驱动
     'default' => env('pay.driver', 'wechat'),
 
-    // oss驱动配置
+    // 支付驱动配置
     'drivers'  => [
         // 微信驱动
         'wechat' => [
