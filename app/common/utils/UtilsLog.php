@@ -9,6 +9,7 @@ use think\facade\Log;
 class UtilsLog
 {
     public static function record($message,$type){
-        Log::record($message, $type.'-'.RID);
+        Log::record($message, RID.'-'.$type);
+        return true;
     }
 }
