@@ -73,7 +73,7 @@ class Tencent implements OssInterface
             $result = $this->sts->getTempKeys($config);
             $result['bucket'] = $config['bucket'];
             $result['region'] = $config['region'];
-            $this->setCache($result,['expire'=>$result['expiredTime']-time()]);
+            $this->setCache($result,['expire'=>$this->options['durationSeconds']-60]);
             return $result;
         }catch (\Exception $e){
             exception("数据获取失败");
