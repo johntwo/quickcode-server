@@ -28,7 +28,8 @@
         "topthink/think-migration": "^3.0",
         "tencentcloud/tencentcloud-sdk-php": "^3.0",
         "alibabacloud/dysmsapi-20170525": "2.0.8",
-        "qcloud_sts/qcloud-sts-sdk": "3.0.*"
+        "qcloud_sts/qcloud-sts-sdk": "3.0.*",
+        "overtrue/wechat": "~5.0"
     },
     "require-dev": {
         "symfony/var-dumper": "^4.2",

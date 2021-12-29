@@ -11,6 +11,8 @@
 use think\facade\Route;
 Route::get('Index/index$', '/admin/Index/index');
 Route::post('User/login$', '/admin/User/login');
+Route::get('Wechat/payment', '/admin/Wechat/payment');
+Route::post('Wechat/payreceive', '/admin/Wechat/payreceive');
 // 需要登录的路由
 Route::group(function(){
     Route::get('User/current', '/admin/User/current');
