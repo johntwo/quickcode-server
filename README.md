@@ -39,12 +39,12 @@ return [
 ### 下单
 ```php
 Pay::order([
-'body' => '腾讯充值中心-QQ会员充值',
-'out_trade_no' => '201508061253466',
-'total_fee' => 1,
-'notify_url' => 'http://zktest.free.svipss.top/admin/wechat/payreceive', // 支付结果通知网址，如果不设置则会使用配置里的默认地址
-'trade_type' => 'JSAPI', // 请对应换成你的支付方式对应的值类型
-'openid' => 'oj6Mm0ZbBNBXtTggFGhVy9t0TbW4',
+    'body' => '腾讯充值中心-QQ会员充值',
+    'out_trade_no' => '201508061253466',
+    'total_fee' => 1,
+    'notify_url' => 'http://zktest.free.svipss.top/admin/wechat/payreceive', // 支付结果通知网址，如果不设置则会使用配置里的默认地址
+    'trade_type' => 'JSAPI', // 请对应换成你的支付方式对应的值类型
+    'openid' => 'oj6Mm0ZbBNBXtTggFGhVy9t0TbW4',
 ]);
 ```
 ### 支付成功验证
@@ -55,5 +55,5 @@ Pay::paidNotify(function($message){
             // 自己的验证逻辑
 
             return true;// 支付成功返回true，否则返回其他String信息即可
-        });
+});
 ```
