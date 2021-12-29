@@ -36,8 +36,7 @@ return [
 
 ```
 
-### 调用
-#### 下单例子
+### 下单
 ```php
 Pay::order([
 'body' => '腾讯充值中心-QQ会员充值',
@@ -48,7 +47,7 @@ Pay::order([
 'openid' => 'oj6Mm0ZbBNBXtTggFGhVy9t0TbW4',
 ]);
 ```
-#### 支付成功验证
+### 支付成功验证
 ```php
 Pay::paidNotify(function($message){
             // $message 是微信回调的参数，验签通过才会进入这个方法
