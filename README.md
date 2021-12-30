@@ -2,11 +2,14 @@ QuickCode 1.0
 ===============
 
 > 运行环境要求PHP7.4+
-> 
+>
 
 # 支付驱动
+
 ## 微信支付
+
 ### 配置
+
 ```php
 <?php
 
@@ -37,6 +40,7 @@ return [
 ```
 
 ### 下单
+
 ```php
 Pay::order([
     'body' => '腾讯充值中心-QQ会员充值',
@@ -47,7 +51,9 @@ Pay::order([
     'openid' => 'oj6Mm0ZbBNBXtTggFGhVy9t0TbW4',
 ]);
 ```
+
 ### 支付成功验证
+
 ```php
 Pay::paidNotify(function($message){
         // $message 是微信回调的参数，验签通过才会进入这个方法
@@ -56,4 +62,12 @@ Pay::paidNotify(function($message){
 
         return true;// 支付成功返回true，否则返回其他String信息即可
 });
+```
+
+# 小程序驱动 (Applet)
+
+## 获取用户信息
+
+```php
+Applet::getUserInfo('073dh2ml2395m8463Nll2yNNHV2dh2mE')
 ```
