@@ -71,3 +71,8 @@ Pay::paidNotify(function($message){
 ```php
 Applet::getUserInfo('073dh2ml2395m8463Nll2yNNHV2dh2mE')
 ```
+
+## 获取手机号码信息
+```php
+Applet::getUserPhoneNumber("edc505e9a452bf6d1180cdf492f08d449a2346022eccf5c94822901bddea177c")
+```

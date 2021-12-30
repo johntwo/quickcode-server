@@ -7,6 +7,7 @@ namespace  app\common\pluings\service;
  * Date 2021/12/18   11:45
  * @see \app\common\pluings\applet\Driver
  * @method static mixed getUserInfo($code) 获取用户信息
+ * @method static mixed getUserPhoneNumber($code) 获取用户手机号码信息
  */
 class Applet extends \think\Facade
 {
