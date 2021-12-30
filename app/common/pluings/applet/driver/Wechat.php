@@ -64,4 +64,13 @@ class Wechat implements AppletInterface
 
         return $result;
     }
+
+    public function getUserPhoneNumber($code)
+    {
+        $result = $this->miniProgram->phone_number->getUserPhoneNumber($code);
+
+        empty($result['phone_info']) && exception("手机信息获取失败");
+
+        return $result;
+    }
 }
