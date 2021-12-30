@@ -1,23 +1,23 @@
 <?php
 
 // +----------------------------------------------------------------------
-// | applet设置  zhangkai
+// | oss设置  zhangkai
 // +----------------------------------------------------------------------
 
 return [
-    // 默认applet驱动
+    // 默认oss驱动
     'default' => env('applet.driver', 'wechat'),
 
-    // applet驱动配置
+    // oss驱动配置
     'drivers'  => [
-        // 微信驱动
+        // 腾讯驱动
         'wechat' => [
             // 类型
             'type'=>'Wechat',
             // $secretId
-            'appId' => env('applet.drivers-wechat-appId', ''),
+            'appId' => '',
             // $secretKey
-            'appSecret' => env('applet.drivers-wechat-appSecret', '')
+            'appSecret' => ''
         ]
     ],
 ];

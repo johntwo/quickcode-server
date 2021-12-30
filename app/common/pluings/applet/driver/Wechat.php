@@ -24,9 +24,6 @@ class Wechat implements AppletInterface
         'appSecret' => ''
     ];
 
-    /**
-     * @var \EasyWeChat\MiniProgram\Application
-     */
     protected $miniProgram;
 
     /**
@@ -66,19 +63,5 @@ class Wechat implements AppletInterface
         empty($result['openid']) && exception("用户信息获取失败");
 
         return $result;
-    }
-
-    public function getUserPhoneNumber($code)
-    {
-        $result = $this->miniProgram->phone_number->getUserPhoneNumber($code);
-
-        empty($result['phone_info']) && exception("手机信息获取失败");
-
-        return $result;
-    }
-
-    public function getAccessToken()
-    {
-        return $this->miniProgram->access_token->getToken();
     }
 }
