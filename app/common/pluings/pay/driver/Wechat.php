@@ -24,7 +24,7 @@ class Wechat implements PayInterface
         'type' => 'Wechat'
     ];
 
-    protected $app = null;
+    protected $pay = null;
 
     /**
      * 架构函数
@@ -37,12 +37,12 @@ class Wechat implements PayInterface
             $this->options = array_merge($this->options, $options);
         }
 
-        $this->app = Factory::payment([
+        $this->pay = Factory::payment([
             'app_id' => $this->options['app_id'],
             'mch_id' => $this->options['mch_id'],
             'key' => $this->options['key'],
         ]);
-        $this->app->rebind('logger', new EasyWechatLog());
+        $this->pay->rebind('logger', new EasyWechatLog());
     }
 
     public function order($params)
@@ -59,15 +59,18 @@ class Wechat implements PayInterface
 //            'openid' => 'oj6Mm0ZbBNBXtTggFGhVy9t0TbW4',
 //        ]
         empty($params['trade_type']) && $params['trade_type'] = 'JSAPI';
+
+        // 微信的价格需要乘以100
+        $params['total_fee'] *= 100;
         // 统一下单
-        $result = $this->app->order->unify($params);
+        $result = $this->pay->order->unify($params);
 
         if(empty($result['prepay_id'])){
-            exception($result['err_code_des']);
+            empty($result['err_code_des'])?exception('下单失败'):exception($result['err_code_des']);
         }
 
         // 返回支付的参数
-        return $this->app->jssdk->bridgeConfig($result['prepay_id'], false);;
+        return $this->pay->jssdk->bridgeConfig($result['prepay_id'], false);;
     }
 
     /**
@@ -97,7 +100,7 @@ class Wechat implements PayInterface
 
     public function paidNotify(\Closure $closure)
     {
-        $response = $this->app->handlePaidNotify($closure);
+        $response = $this->pay->handlePaidNotify($closure);
 
         return $response;
     }
