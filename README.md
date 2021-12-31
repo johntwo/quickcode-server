@@ -155,7 +155,7 @@ Captcha::generate('login','17754589605');
 Captcha::verify('login','17754589605',123456);
 ```
 
-# 短信驱动 （Sms）
+# 短信驱动（Sms）
 
 ### 配置
 ```php
