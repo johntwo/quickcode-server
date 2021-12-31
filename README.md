@@ -66,13 +66,39 @@ Pay::paidNotify(function($message){
 
 # 小程序驱动 (Applet)
 
-## 获取用户信息
+### 配置
+
+```php
+// +----------------------------------------------------------------------
+// | applet设置  zhangkai
+// +----------------------------------------------------------------------
+
+return [
+    // 默认applet驱动
+    'default' => env('applet.driver', 'wechat'),
+
+    // applet驱动配置
+    'drivers'  => [
+        // 微信驱动
+        'wechat' => [
+            // 类型
+            'type'=>'Wechat',
+            // $secretId
+            'appId' => '',
+            // $secretKey
+            'appSecret' => ''
+        ]
+    ],
+];
+```
+
+### 获取用户信息
 
 ```php
 Applet::getUserInfo($code);
 ```
 
-## 获取手机号码信息
+### 获取手机号码信息
 ```php
 Applet::getUserPhoneNumber($code);
 ```
