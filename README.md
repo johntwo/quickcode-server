@@ -154,3 +154,62 @@ Captcha::generate('login','17754589605');
 // 方法无返回值，验证不通过会自动抛异常
 Captcha::verify('login','17754589605',123456);
 ```
+
+# 短信驱动 （Sms）
+
+### 配置
+```php
+// +----------------------------------------------------------------------
+// | 短信设置  zhangkai
+// +----------------------------------------------------------------------
+
+return [
+    // 默认短信驱动
+    'default' => env('sms.driver', 'alibaba'),
+
+    // 短信驱动配置
+    'drivers'  => [
+        // 腾讯驱动
+        'tencent' => [
+            // 类型
+            'type'=>'Tencent',
+            // $secretId
+            'secretId' => '',
+            // $secretKey
+            'secretKey' => '',
+            // SmsSdkAppId
+            'smsSdkAppId'=> '',
+            // 签名信息
+            'signName'=>''
+        ],
+        // 阿里巴巴驱动
+        'alibaba'=>[
+            // 类型
+            'type'=>'Alibaba',
+            // accessKeyId
+            'accessKeyId'=>'',
+            // accessKeySecret
+            'accessKeySecret'=>'',
+            // 签名
+            'signName'=>''
+        ]
+    ]
+];
+```
+
+### 发送短信
+
+```php
+// tencent 驱动方式发送短信
+Sms::send([
+    'phoneNumbers'=>['17751411980'], // 手机号码,可以是数组 最多200个
+    'templateId'=>'1231241',         // 短信模板id
+    'templateParam'=>['1025','10']   // 模板参数
+]);
+// alibaba 驱动
+Sms::send([
+      'phoneNumbers'=>['1775112345','13167221111'], // 手机号码,可以是数组 最多200个
+      'templateId'=>'SMS_209195440', // 短信模板id
+      'templateParam'=>['code'=>635486] // 模板参数
+]);
+```
