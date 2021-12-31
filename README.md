@@ -200,7 +200,7 @@ return [
 ### 发送短信
 
 ```php
-// tencent 驱动方式发送短信
+// tencent 驱动
 Sms::send([
     'phoneNumbers'=>['17751411980'], // 手机号码,可以是数组 最多200个
     'templateId'=>'1231241',         // 短信模板id
