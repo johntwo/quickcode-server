@@ -41,6 +41,8 @@ class Wechat implements PayInterface
             'app_id' => $this->options['app_id'],
             'mch_id' => $this->options['mch_id'],
             'key' => $this->options['key'],
+            'cert_path' => $this->options['cert_path'],
+            'key_path' => $this->options['key_path']
         ]);
         $this->pay->rebind('logger', new EasyWechatLog());
     }
@@ -95,12 +97,49 @@ class Wechat implements PayInterface
 
     public function refund($params)
     {
-        exception('暂不支持订单退款');
+        $this->validRefundParams($params);
+
+        // 微信的价格需要乘以100
+        $params['total_fee'] *= 100;
+        $params['refund_fee'] *= 100;
+
+        $result = $this->pay->refund->byTransactionId(
+            $params['transaction_id'],
+            $params['out_refund_no'],
+            $params['total_fee'],
+            $params['refund_fee'],
+            [
+                'notify_url'=>$params['notify_url']
+            ]
+        );
+
+        return $result;
+    }
+
+    /**
+     * @param $params
+     * 验证创建订单参数是否全面
+     */
+    public function validRefundParams($params){
+
+        empty($params['transaction_id']) && exception("订单参数不全");
+        empty($params['out_refund_no']) && exception("订单参数不全");
+        empty($params['notify_url']) && exception("订单参数不全");
+        empty($params['total_fee']) && exception("订单参数不全");
+        empty($params['refund_fee']) && exception("订单参数不全");
+
     }
 
     public function paidNotify(\Closure $closure)
     {
         $response = $this->pay->handlePaidNotify($closure);
+
+        return $response;
+    }
+
+    public function refundNotify(\Closure $closure)
+    {
+        $response = $this->pay->handleRefundedNotify($closure);
 
         return $response;
     }
