@@ -10,6 +10,7 @@ namespace  app\common\pluings\service;
  * @method static mixed query($data) 查询订单
  * @method static mixed refund($data) 订单退款
  * @method static mixed paidNotify(\Closure $closure) 支付验证
+ * @method static mixed refundNotify(\Closure $closure) 退款验证
  */
 class Pay extends \think\Facade
 {

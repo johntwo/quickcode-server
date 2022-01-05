@@ -31,4 +31,9 @@ interface PayInterface
      * 退款
      */
     public function refund($params);
+
+    /**
+     * 验证是否退款成功
+     */
+    public function refundNotify(\Closure $closure);
 }

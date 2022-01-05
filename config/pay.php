@@ -19,7 +19,11 @@ return [
             // 商户id
             'mch_id' => '',
             // 商户 API 秘钥
-            'key' => ''
+            'key' => '',
+            // 商户 API 证书， apiclient_cert.pem 的绝对路径
+            'cert_path' => '',
+            // 商户 API 证书， apiclient_key.pem 的绝对路径
+            'key_path' => ''
         ]
     ],
 ];

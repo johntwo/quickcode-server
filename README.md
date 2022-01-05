@@ -33,7 +33,11 @@ return [
             // 商户id
             'mch_id' => '',
             // 商户 API 秘钥
-            'key' => ''
+            'key' => '',
+            // 商户 API 证书， apiclient_cert.pem 的绝对路径
+            'cert_path' => '',
+            // 商户 API 证书， apiclient_key.pem 的绝对路径
+            'key_path' => ''
         ]
     ],
 ];
@@ -62,6 +66,29 @@ Pay::paidNotify(function($message){
         // 自己的验证逻辑
 
         return true;// 支付成功返回true，否则返回其他String信息即可
+});
+```
+
+### 退款
+```php
+Pay::refund([
+            'transaction_id'=>'4200001376202201057466511986',
+            'out_refund_no'=>'202103030303',
+            'total_fee'=>0.01,
+            'refund_fee'=>0.01,
+            'notify_url'=>'http://zktest.free.svipss.top/admin/index/refund'
+]);
+```
+
+### 退款回调
+```php
+Pay::refundNotify(function($message, $reqInfo, $fail){
+            // 其中 $message['req_info'] 获取到的是加密信息
+            // $reqInfo 为 message['req_info'] 解密后的信息
+
+            // 自己的验证逻辑
+
+            return true;// 支付成功返回true，否则返回其他String信息即可
 });
 ```
 
