@@ -8,6 +8,7 @@ namespace  app\common\pluings\service;
  * @see \app\common\pluings\applet\Driver
  * @method static mixed getUserInfo($code) 获取用户信息
  * @method static mixed getUserPhoneNumber($code) 获取用户手机号码信息
+ * @method static mixed getAccessToken() 获取access_token
  */
 class Applet extends \think\Facade
 {

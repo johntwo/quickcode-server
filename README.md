@@ -131,6 +131,11 @@ Applet::getUserInfo($code);
 Applet::getUserPhoneNumber($code);
 ```
 
+### 获取access_token
+```php
+Applet::getAccessToken();
+```
+
 # 验证码驱动（Captcha）
 
 ### 配置
