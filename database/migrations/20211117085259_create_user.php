@@ -28,7 +28,7 @@ class CreateUser extends Migrator
      */
     public function change()
     {
-        $table = $this->table("user",['engine'=>'Innodb']);
+        $table = $this->table("user",['comment'=>'用户','engine'=>'Innodb','collation'=>'utf8mb4_general_ci']);
         // 表必备字段
         $table->addColumn(Column::string('uuid')->setLimit(32)->setComment('唯一编号'));
         $table->addColumn(Column::integer('creator')->setLimit(11)->setComment('创建者id'));
