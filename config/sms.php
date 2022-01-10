@@ -15,24 +15,24 @@ return [
             // 类型
             'type'=>'Tencent',
             // $secretId
-            'secretId' => '',
+            'secretId' => env('sms.drivers-tencent-secretId', ''),
             // $secretKey
-            'secretKey' => '',
+            'secretKey' => env('sms.drivers-tencent-secretKey', ''),
             // SmsSdkAppId
-            'smsSdkAppId'=> '',
+            'smsSdkAppId'=> env('sms.drivers-tencent-smsSdkAppId', ''),
             // 签名信息
-            'signName'=>''
+            'signName'=> env('sms.drivers-tencent-signName', ''),
         ],
         // 阿里巴巴驱动
         'alibaba'=>[
             // 类型
             'type'=>'Alibaba',
             // accessKeyId
-            'accessKeyId'=>'',
+            'accessKeyId'=> env('drivers-alibaba-accessKeyId', ''),
             // accessKeySecret
-            'accessKeySecret'=>'',
+            'accessKeySecret'=> env('drivers-alibaba-accessKeySecret', ''),
             // 签名
-            'signName'=>''
+            'signName'=> env('drivers-alibaba-signName', ''),
         ]
     ]
 ];
