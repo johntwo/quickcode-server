@@ -11,37 +11,18 @@ QuickCode 1.0
 
 ### 配置
 
-```php
-<?php
-
-// +----------------------------------------------------------------------
-// | 支付设置  zhangkai
-// +----------------------------------------------------------------------
-
-return [
-    // 默认支付驱动
-    'default' => env('pay.driver', 'wechat'),
-
-    // 支付驱动配置
-    'drivers'  => [
-        // 微信驱动
-        'wechat' => [
-            // 类型
-            'type'=>'Wechat',
-            // 小程序 app_id
-            'app_id' => '',
-            // 商户id
-            'mch_id' => '',
-            // 商户 API 秘钥
-            'key' => '',
-            // 商户 API 证书， apiclient_cert.pem 的绝对路径
-            'cert_path' => '',
-            // 商户 API 证书， apiclient_key.pem 的绝对路径
-            'key_path' => ''
-        ]
-    ],
-];
-
+```ini
+[pay]
+driver = wechat
+drivers-wechat-app_id = ''
+;商户id
+drivers-wechat-mch_id = ''
+;商户平台的api key
+drivers-wechat-key = ''
+; 证书路径，退款需要指定绝对路径
+drivers-wechat-cert_path = ''
+; 证书路径，退款需要指定绝对路径
+drivers-wechat-key_path = ''
 ```
 
 ### 下单
@@ -96,28 +77,11 @@ Pay::refundNotify(function($message, $reqInfo, $fail){
 
 ### 配置
 
-```php
-// +----------------------------------------------------------------------
-// | applet设置  zhangkai
-// +----------------------------------------------------------------------
-
-return [
-    // 默认applet驱动
-    'default' => env('applet.driver', 'wechat'),
-
-    // applet驱动配置
-    'drivers'  => [
-        // 微信驱动
-        'wechat' => [
-            // 类型
-            'type'=>'Wechat',
-            // $secretId
-            'appId' => '',
-            // $secretKey
-            'appSecret' => ''
-        ]
-    ],
-];
+```ini
+[applet]
+driver = wechat
+drivers-wechat-appId = ''
+drivers-wechat-appSecret = ''
 ```
 
 ### 获取用户信息
@@ -191,43 +155,17 @@ Captcha::verify('login','17754589605',123456);
 # 短信驱动（Sms）
 
 ### 配置
-```php
-// +----------------------------------------------------------------------
-// | 短信设置  zhangkai
-// +----------------------------------------------------------------------
+```ini
+[sms]
+driver = alibaba
+drivers-alibaba-accessKeyId= ''
+drivers-alibaba-accessKeySecret= ''
+drivers-alibaba-signName= ''
 
-return [
-    // 默认短信驱动
-    'default' => env('sms.driver', 'alibaba'),
-
-    // 短信驱动配置
-    'drivers'  => [
-        // 腾讯驱动
-        'tencent' => [
-            // 类型
-            'type'=>'Tencent',
-            // $secretId
-            'secretId' => '',
-            // $secretKey
-            'secretKey' => '',
-            // SmsSdkAppId
-            'smsSdkAppId'=> '',
-            // 签名信息
-            'signName'=>''
-        ],
-        // 阿里巴巴驱动
-        'alibaba'=>[
-            // 类型
-            'type'=>'Alibaba',
-            // accessKeyId
-            'accessKeyId'=>'',
-            // accessKeySecret
-            'accessKeySecret'=>'',
-            // 签名
-            'signName'=>''
-        ]
-    ]
-];
+drivers-tencent-secretId= ''
+drivers-tencent-secretKey= ''
+drivers-tencent-smsSdkAppId= ''
+drivers-tencent-signName= ''
 ```
 
 ### 发送短信
