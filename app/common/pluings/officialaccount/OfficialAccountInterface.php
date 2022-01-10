@@ -15,9 +15,4 @@ interface OfficialAccountInterface
      * 发送模板消息
      */
     public function sendTemplateMessage($params);
-
-    /**
-     * 获取公众号对象
-     */
-    public function getOfficialAccount();
 }

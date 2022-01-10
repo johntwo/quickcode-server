@@ -7,7 +7,6 @@ namespace  app\common\pluings\service;
  * Date 2021/12/18   11:45
  * @see \app\common\pluings\officialaccount\Driver
  * @method static mixed sendTemplateMessage($params) 发送模板消息
- * @method static \EasyWeChat\OfficialAccount\Application getOfficialAccount() 获取公众号对象
  */
 class OfficialAccount extends \think\Facade
 {

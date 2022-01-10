@@ -82,10 +82,4 @@ class Wechat implements OfficialAccountInterface
         empty($params['template_id']) && exception("模板信息不能为空");
         empty($params['data']) && exception("模板内容不能为空");
     }
-
-    public function getOfficialAccount()
-    {
-        empty($this->officialAccount) && exception('公众号不存在');
-        return $this->officialAccount;
-    }
 }
