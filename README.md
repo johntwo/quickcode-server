@@ -13,7 +13,7 @@ QuickCode 1.0
 env = local
 ;env = production
 ```
-以上配置会读取项目根目录下的 .env.local 作为配置
+以上配置会读取项目根目录下的 .env.local 作为配置，local为默认配置
 
 
 # 接口文档
