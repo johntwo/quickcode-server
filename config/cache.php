@@ -29,9 +29,9 @@ return [
             // 驱动方式
             'type'   => 'redis',
             // 服务器地址
-            'host'       => '127.0.0.1',
+            'host'       => env('cache.stores-redis-host', ''),
             // 密码
-            'password'   => '111111',
+            'password'   => env('cache.stores-redis-password', ''),
             // 序列化机制 例如 ['serialize', 'unserialize']
             'serialize'  => ['json_encode','json_decode']
         ],

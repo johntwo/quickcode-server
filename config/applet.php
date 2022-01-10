@@ -15,9 +15,9 @@ return [
             // 类型
             'type'=>'Wechat',
             // $secretId
-            'appId' => '',
+            'appId' => env('applet.drivers-wechat-appId', ''),
             // $secretKey
-            'appSecret' => ''
+            'appSecret' => env('applet.drivers-wechat-appSecret', '')
         ]
     ],
 ];

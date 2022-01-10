@@ -15,21 +15,17 @@ return [
             // 类型
             'type'=>'Tencent',
             // $secretId
-            'secretId' => '',
+            'secretId' => env('oss.drivers-tencent-secretId', ''),
             // $secretKey
-            'secretKey' => '',
+            'secretKey' => env('oss.drivers-tencent-secretKey', ''),
             // sts token 过期时间 秒
-            'durationSeconds' => 1800,
+            'durationSeconds' => env('oss.drivers-tencent-durationSeconds', ''),
             // region bucket所在的区域
-            'region' => 'ap-shanghai',
+            'region' => env('oss.drivers-tencent-region', ''),
             // 默认的存储桶 名称
-            'default_bucket' => '',
+            'default_bucket' => env('oss.drivers-tencent-default_bucket', ''),
             // 允许的操作类型
-            'allowActions' => [
-                // 简单上传
-                'name/cos:PutObject',
-                'name/cos:PostObject'
-            ]
+            'allowActions' => explode(',',env('oss.drivers-tencent-allowActions', ''))
         ]
     ],
 ];
