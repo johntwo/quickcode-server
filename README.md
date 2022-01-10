@@ -5,6 +5,16 @@ QuickCode 1.0
 > 
 > 2、基于thinkphp6开发
 
+# 环境配置
+根据不同的环境读取不同的配置文件
+
+###配置php.ini ,在文件的最后一行加上
+```ini
+env = local
+;env = production
+```
+### 以上配置会读取项目根目录下的 .env.local 作为配置
+
 # 支付驱动 (Pay)
 
 ## 微信支付
