@@ -202,3 +202,39 @@ Sms::send([
       'templateParam'=>['code'=>635486] // 模板参数
 ]);
 ```
+
+# 公众号驱动（OfficialAccount）
+
+### 配置
+```ini
+;公众号配置
+[officialaccount]
+driver = wechat
+drivers-wechat-appId = ''
+drivers-wechat-appSecret = ''
+```
+
+### 推送模板消息
+
+```php
+/**
+ *  url 代表用户点击后跳转的地址 （可不传）
+ *  miniprogram 代表用户点击后跳转的小程序 （可不传）
+ *  如果 url 和 miniprogram 字段都传，会优先跳转小程序。
+ */
+OfficialAccount::sendTemplateMessage([
+            'touser' => 'oXvp85ww3BXgwwcfVN3czlLocyuI',
+            'template_id' => 'J2KH7Z2Ku1SE5YhfDsLxYYq7T_CzgvhofaC9p8CMRM4',
+            'url' => '',
+            'miniprogram' => [
+                'appid' => 'xxxxxxx',
+                'pagepath' => 'pages/xxx',
+            ],
+            'data' => [
+                'first' => '完善信息',
+                'keyword1' => '测试活动',
+                'keyword2' => '2022-01-15 18:00:00',
+                'remark' => '测试备注',
+            ],
+]);
+```
