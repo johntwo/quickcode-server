@@ -8,6 +8,9 @@ QuickCode 1.0
 # 环境配置
 根据不同的环境读取不同的配置文件
 
+# 安装
+> composer install
+
 ### 配置php.ini ,在文件的最后一行加上
 ```ini
 env = local
