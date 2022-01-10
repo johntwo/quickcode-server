@@ -14,8 +14,11 @@ namespace think;
 
 require __DIR__ . '/../vendor/autoload.php';
 
+// 判断当前环境
+$env = empty(get_cfg_var('env'))?'local':get_cfg_var('env');
+
 // 执行HTTP应用并响应
-$http = (new App())->http;
+$http = (new App())->setEnvName($env)->http;
 
 $response = $http->run();
 
