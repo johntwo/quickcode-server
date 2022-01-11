@@ -238,3 +238,9 @@ OfficialAccount::sendTemplateMessage([
             ],
 ]);
 ```
+
+### 获取公众号对象
+```php
+// \EasyWeChat\OfficialAccount\Application
+OfficialAccount::getOfficialAccount();
+```
