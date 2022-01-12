@@ -39,7 +39,7 @@ return [
             // 日志输出格式化
             'format'         => '[%s][%s] %s',
             // 是否实时写入
-            'realtime_write' => true,
+            'realtime_write' => false,
         ],
         // 其它日志通道配置
     ],
