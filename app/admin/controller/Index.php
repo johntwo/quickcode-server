@@ -6,7 +6,7 @@ use app\admin\middleware\Auth;
 class Index extends ControllerBase
 {
     /**
-     * @OA\Get(
+     * @OA\Post(
      *   path="/index/index",
      *   summary="首页接口",
      *   @OA\Parameter(name="userId", in="query", @OA\Schema(type="string"), required=true, description="用户ID"),

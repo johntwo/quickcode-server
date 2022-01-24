@@ -9,11 +9,4 @@
 // | Author: zhangkai
 // +----------------------------------------------------------------------
 use think\facade\Route;
-Route::get('Index/index$', '/admin/Index/index');
-Route::post('User/login$', '/admin/User/login');
-// 需要登录的路由
-Route::group(function(){
-    Route::get('User/current', '/admin/User/current');
-    Route::delete('User/logout', '/admin/User/logout');
-    Route::get('oss/getOssToken', '/admin/oss/getOssToken');
-})->middleware(\app\admin\middleware\AuthToken::class);
+Route::post('Index/index$', '/admin/Index/index');
