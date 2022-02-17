@@ -1,0 +1,24 @@
+<?php
+
+namespace  app\common\pluings\service;
+/**
+ * Created by PhpStorm
+ * USER zhangkai QQ 920062039
+ * Date 2021/12/18   11:45
+ * @see \app\common\pluings\applet\Driver
+ * @method static mixed getUserInfo($code) 获取用户信息
+ * @method static mixed getUserPhoneNumber($code) 获取用户手机号码信息
+ * @method static mixed getAccessToken() 获取access_token
+ */
+class Applet extends \think\Facade
+{
+    /**
+     * 获取当前Facade对应类名（或者已经绑定的容器对象标识）
+     * @access protected
+     * @return string
+     */
+    protected static function getFacadeClass()
+    {
+        return 'applet';
+    }
+}
