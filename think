@@ -6,5 +6,8 @@ namespace think;
 // 加载基础文件
 require __DIR__ . '/vendor/autoload.php';
 
+// 判断当前环境
+$env = empty(get_cfg_var('env'))?'local':get_cfg_var('env');
+
 // 应用初始化
-(new App())->console->run();
+(new App())->setEnvName($env)->console->run();
