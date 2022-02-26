@@ -3,6 +3,8 @@
 
 namespace app\common\config\cache;
 
+use think\Cache;
+
 /**
  * Class CacheKey
  * 缓存key的配置
@@ -26,6 +28,16 @@ class CacheKey
     public static function loginAppToken(): CacheKeyBuilder
     {
         return new CacheKeyBuilder(['Login','Token', 'App']);
+    }
+
+    /**
+     * @param $module
+     * @return CacheKeyBuilder
+     * 接口权限
+     */
+    public static function authority($module): CacheKeyBuilder
+    {
+        return new CacheKeyBuilder(['Authority',$module]);
     }
 
 }

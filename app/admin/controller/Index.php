@@ -2,6 +2,8 @@
 namespace app\admin\controller;
 
 use app\admin\middleware\Auth;
+use app\common\config\auth\Authority;
+use Symfony\Component\Yaml\Yaml;
 
 class Index extends ControllerBase
 {
@@ -22,7 +24,7 @@ class Index extends ControllerBase
      */
     public function index()
     {
-        return result()->data(Auth::$CurrentUser)->toJson();
+        return result()->data(Authority::getAuthority('admin'))->toJson();
         //这是自定义返回code的，默认是0        return result()->data(['title'=>'这是测试的主页接口'])->code(CodeBase::$Fail)->toJson();
     }
 }

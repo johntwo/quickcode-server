@@ -13,11 +13,13 @@ class CacheKeyBuilder
         $this->keys = $prefixs;
     }
 
-    public function key($appendKeys){
-        if(is_array($appendKeys)){
-            $this->keys = array_merge($this->keys,$appendKeys);
-        }else{
-            array_push($this->keys,$appendKeys);
+    public function key($appendKeys = null){
+        if(!empty($appendKeys)){
+            if(is_array($appendKeys)){
+                $this->keys = array_merge($this->keys,$appendKeys);
+            }else{
+                array_push($this->keys,$appendKeys);
+            }
         }
 
         return implode(":",$this->keys);
