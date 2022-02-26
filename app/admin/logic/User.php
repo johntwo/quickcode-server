@@ -5,6 +5,7 @@ namespace app\admin\logic;
 
 
 use app\common\config\cache\CacheKey;
+use app\common\config\Client;
 use app\common\utils\Auth;
 
 class User extends LogicBase
@@ -44,5 +45,62 @@ class User extends LogicBase
      */
     public function logout($userInfo){
         cache(CacheKey::loginAdminToken()->key([$userInfo->id]),null);
+    }
+
+    /**
+     *  获取角色列表
+     */
+    public function getList($data){
+        $where = [];
+        !empty($data['searchContent']) && $where[] = ['username|phone','like','%'.$data['searchContent'].'%'];
+        return $this->modelUser->where($where)->paginate(10);
+    }
+
+    /**
+     * 新增角色信息
+     */
+    public function add($data){
+        $data['uuid'] = uuid();
+        $data['creator'] = \app\admin\middleware\Auth::$CurrentUser->id;
+        $data['updater'] = \app\admin\middleware\Auth::$CurrentUser->id;
+        $this->modelUser->add($data);
+    }
+
+    /**
+     * 编辑信息
+     */
+    public function update($data){
+        $data['id']===1 && exception('无操作权限');
+        $data['updater'] = \app\admin\middleware\Auth::$CurrentUser->id;
+
+        $saveData = [
+            'id'=>$data['id'],
+            'uuid'=>$data['uuid'],
+            'username'=>$data['username'],
+            'nickname'=>$data['nickname'],
+            'phone'=>$data['phone'],
+            'email'=>$data['email'],
+            'sex'=>$data['sex']
+        ];
+        !empty($data['password']) && $saveData['password'] = password_hash($data['password'],1);
+
+        $this->modelUser
+            ->where('id',$data['id'])
+            ->where('uuid',$data['uuid'])
+            ->save($saveData);
+    }
+
+    /**
+     * 删除信息
+     */
+    public function del($data){
+        empty($data['id']) && exception('删除失败');
+        empty($data['uuid']) && exception('删除失败');
+        $data['id']===1 && exception('无操作权限');
+        $this->modelUser
+            ->where('id', $data['id'])
+            ->where('uuid', $data['uuid'])
+            ->find()
+            ->delete();
     }
 }

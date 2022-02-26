@@ -71,4 +71,14 @@ class Role extends LogicBase
             ->find()
             ->delete();
     }
+
+    /**
+     *  获取角色列表
+     */
+    public function getOption($data){
+        $where = [];
+        $where[] = ['client','=',Client::ADMIN];
+        !empty($data['searchContent']) && $where[] = ['name','like','%'.$data['searchContent'].'%'];
+        return $this->modelRole->field(['id','name'])->where($where)->select();
+    }
 }

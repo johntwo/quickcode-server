@@ -82,4 +82,22 @@ class Role extends ControllerBase
     public function del(){
         return result()->data($this->logicRole->del(request()->param()))->toJson();
     }
+
+    /**
+     * @OA\Get(
+     *   path="/role/getOption",
+     *   summary="获取角色列表选项",
+     *   @OA\Response(
+     *     response=200,
+     *     description="获取角色列表选项"
+     *   ),
+     *   @OA\Response(
+     *     response="default",
+     *     description="获取角色列表选项"
+     *   )
+     * )
+     */
+    public function getOption(){
+        return result()->data($this->logicRole->getOption(request()->param()))->toJson();
+    }
 }

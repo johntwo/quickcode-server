@@ -54,4 +54,76 @@ class User extends ControllerBase
     public function logout(){
         return result()->data($this->logicUser->logout(Auth::$CurrentUser))->toJson();
     }
+
+    /**
+     * @OA\Get(
+     *   path="/user/getList",
+     *   summary="获取用户列表",
+     *   @OA\Response(
+     *     response=200,
+     *     description="返回用户列表"
+     *   ),
+     *   @OA\Response(
+     *     response="default",
+     *     description="返回用户列表"
+     *   )
+     * )
+     */
+    public function getList(){
+        return result()->data($this->logicUser->getList(request()->param()))->toJson();
+    }
+
+    /**
+     * @OA\Post(
+     *   path="/user/add",
+     *   summary="新增用户信息",
+     *   @OA\Response(
+     *     response=200,
+     *     description=""
+     *   ),
+     *   @OA\Response(
+     *     response="default",
+     *     description=""
+     *   )
+     * )
+     */
+    public function add(){
+        return result()->data($this->logicUser->add(request()->param()))->toJson();
+    }
+
+    /**
+     * @OA\Patch(
+     *   path="/user/update",
+     *   summary="更新用户信息",
+     *   @OA\Response(
+     *     response=200,
+     *     description=""
+     *   ),
+     *   @OA\Response(
+     *     response="default",
+     *     description=""
+     *   )
+     * )
+     */
+    public function update(){
+        return result()->data($this->logicUser->update(request()->param()))->toJson();
+    }
+
+    /**
+     * @OA\Delete (
+     *   path="/user/del",
+     *   summary="删除用户信息",
+     *   @OA\Response(
+     *     response=200,
+     *     description=""
+     *   ),
+     *   @OA\Response(
+     *     response="default",
+     *     description=""
+     *   )
+     * )
+     */
+    public function del(){
+        return result()->data($this->logicUser->del(request()->param()))->toJson();
+    }
 }
