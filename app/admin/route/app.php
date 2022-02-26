@@ -19,12 +19,17 @@ Route::group(function(){
     Route::get('auth/getTree', '/admin/Auth/getTree');
     // 角色操作
     Route::get('role/getList', '/admin/Role/getList');
+    Route::get('role/getOption', '/admin/Role/getOption');
     Route::post('role/add', '/admin/Role/add');
     Route::patch('role/update', '/admin/Role/update');
     Route::delete('role/del', '/admin/Role/del');
     // 用户
     Route::get('User/current', '/admin/User/current');
     Route::delete('User/logout', '/admin/User/logout');
+    Route::get('user/getList', '/admin/User/getList');
+    Route::post('user/add', '/admin/User/add');
+    Route::patch('user/update', '/admin/User/update');
+    Route::delete('user/del', '/admin/User/del');
     // oss
     Route::get('oss/getOssToken', '/admin/oss/getOssToken');
 })->middleware(\app\admin\middleware\AuthToken::class);
