@@ -1,0 +1,30 @@
+admin:
+  - code: user
+    comment: 用户管理
+    children:
+      - code: user-list
+        comment: 用户列表
+      - code: user-add
+        comment: 用户新增
+      - code: user-update
+        comment: 用户更新
+      - code: user-delete
+        comment: 用户删除
+      - code: user-details
+        comment: 用户详情
+  - code: auth
+    comment: 权限管理
+    children:
+      - code: role
+        comment: 角色管理
+        children:
+          - code: role-list
+            comment: 角色列表
+          - code: role-add
+            comment: 角色新增
+          - code: role-update
+            comment: 角色更新
+          - code: role-delete
+            comment: 角色删除
+          - code: role-details
+            comment: 角色详情
