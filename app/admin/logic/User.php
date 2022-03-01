@@ -10,6 +10,11 @@ use app\common\logic\UserRole;
 use app\common\utils\Auth;
 use think\facade\Db;
 
+/**
+ * Class User
+ * @package app\admin\logic
+ * @property \app\common\model\Role modelRole
+ */
 class User extends LogicBase
 {
     /**
@@ -39,7 +44,25 @@ class User extends LogicBase
      * 获取当前登录用户信息
      */
     public function current($userInfo){
-        return \app\common\model\User::find($userInfo->id);
+        $userInfo = \app\common\model\User::with(['roles'=> function($query){
+            $query->where([
+                'client' => Client::ADMIN
+            ]);
+        }])->find($userInfo->id);
+
+        $userInfo['authorities'] = [];
+        if(!empty($userInfo['roles'])){
+            foreach ($userInfo['roles'] as $item){
+                $roleInfo = $this->modelRole->findByCache($item);
+                if(!empty($roleInfo)){
+                    $roleInfo = json_decode(json_encode($roleInfo),true);
+                    $userInfo['authorities'] = array_merge($userInfo['authorities'],$roleInfo['rules']);
+                }
+            }
+        }
+        $userInfo['authorities'] = array_unique($userInfo['authorities']);
+
+        return $userInfo;
     }
 
     /**

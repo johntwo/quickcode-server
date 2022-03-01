@@ -40,4 +40,9 @@ class CacheKey
         return new CacheKeyBuilder(['Authority',$module]);
     }
 
+    public static function role():CacheKeyBuilder
+    {
+        return new CacheKeyBuilder(['Role']);
+    }
+
 }
