@@ -2,6 +2,7 @@
 
 namespace app\common\model;
 
+use app\common\config\cache\CacheKey;
 use app\common\pluings\service\Oss;
 use think\model\concern\SoftDelete;
 
@@ -27,5 +28,21 @@ class Role extends ModelBase
     public function getRulesAttr($value)
     {
         return json_decode($value,true);
+    }
+
+    /**
+     *
+     */
+    public function findByCache($id){
+        $cacheKey =  CacheKey::role()->key($id);
+        $role = cache($cacheKey);
+        if(!empty($role)){
+            return $role;
+        }
+
+        $role = $this->find($id);
+        cache($cacheKey,$role);
+
+        return $role;
     }
 }

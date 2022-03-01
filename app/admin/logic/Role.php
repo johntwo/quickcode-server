@@ -47,16 +47,16 @@ class Role extends LogicBase
         empty($data['name']) && exception('角色名称不能为空');
         empty($data['rules']) && exception('权限不能为空');
 
-        $data['updater'] = \app\admin\middleware\Auth::$CurrentUser->id;
         $this->modelRole
-            ->where('id',$data['id'])
-            ->where('uuid',$data['uuid'])
+            ->where('id','=',$data['id'])
+            ->where('uuid','=',$data['uuid'])
+            ->find()
             ->save([
-                'id'=>$data['id'],
-                'uuid'=>$data['uuid'],
                 'name'=>$data['name'],
-                'rules'=>$data['rules']
+                'rules'=>$data['rules'],
+                'updater'=>\app\admin\middleware\Auth::$CurrentUser->id
             ]);
+        cache(CacheKey::role()->key($data['id']),null);
     }
 
     /**
