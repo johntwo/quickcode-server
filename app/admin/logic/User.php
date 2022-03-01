@@ -6,7 +6,9 @@ namespace app\admin\logic;
 
 use app\common\config\cache\CacheKey;
 use app\common\config\Client;
+use app\common\logic\UserRole;
 use app\common\utils\Auth;
+use think\facade\Db;
 
 class User extends LogicBase
 {
@@ -53,7 +55,14 @@ class User extends LogicBase
     public function getList($data){
         $where = [];
         !empty($data['searchContent']) && $where[] = ['username|phone','like','%'.$data['searchContent'].'%'];
-        return $this->modelUser->where($where)->paginate(10);
+        return $this->modelUser
+            ->with(['roles'=> function($query){
+                $query->where([
+                    'client' => Client::ADMIN
+                ]);
+            }])
+            ->where($where)
+            ->paginate(10);
     }
 
     /**
@@ -63,7 +72,22 @@ class User extends LogicBase
         $data['uuid'] = uuid();
         $data['creator'] = \app\admin\middleware\Auth::$CurrentUser->id;
         $data['updater'] = \app\admin\middleware\Auth::$CurrentUser->id;
-        $this->modelUser->add($data);
+
+
+        Db::startTrans();
+        try{
+            $user = $this->modelUser->add($data);
+            $this->logicUserRole->save([
+                'client' => Client::ADMIN,
+                'uid' => $user['id'],
+                'roles'=> empty($data['roles']) ? [] : $data['roles']
+            ]);
+            // 提交事务
+            Db::commit();
+        }catch (\Exception $e) {
+            // 回滚事务
+            Db::rollback();
+        }
     }
 
     /**
@@ -74,20 +98,36 @@ class User extends LogicBase
         $data['updater'] = \app\admin\middleware\Auth::$CurrentUser->id;
 
         $saveData = [
-            'id'=>$data['id'],
-            'uuid'=>$data['uuid'],
-            'username'=>$data['username'],
-            'nickname'=>$data['nickname'],
-            'phone'=>$data['phone'],
-            'email'=>$data['email'],
-            'sex'=>$data['sex']
+            'id' => $data['id'],
+            'uuid' => $data['uuid'],
+            'username' => $data['username'],
+            'nickname' => $data['nickname'],
+            'phone'=> $data['phone'],
+            'email' => $data['email'],
+            'sex' => $data['sex']
         ];
         !empty($data['password']) && $saveData['password'] = password_hash($data['password'],1);
 
-        $this->modelUser
-            ->where('id',$data['id'])
-            ->where('uuid',$data['uuid'])
-            ->save($saveData);
+        Db::startTrans();
+        try{
+            $this->modelUser
+                ->where('id',$data['id'])
+                ->where('uuid',$data['uuid'])
+                ->save($saveData);
+            $this->logicUserRole->save([
+                'client' => Client::ADMIN,
+                'uid' => $data['id'],
+                'roles' => empty($data['roles']) ? [] : $data['roles'],
+                'creator' => \app\admin\middleware\Auth::$CurrentUser->id,
+                'updater' => \app\admin\middleware\Auth::$CurrentUser->id
+            ]);
+            // 提交事务
+            Db::commit();
+        }catch (\Exception $e) {
+            // 回滚事务
+            Db::rollback();
+            throw $e;
+        }
     }
 
     /**

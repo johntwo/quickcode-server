@@ -21,7 +21,7 @@ class User extends ModelBase
         if(!empty($data['password'])){
             $data['password'] = password_hash($data['password'],1);
         }
-        $this->save($data);
+        return $this->save($data);
     }
 
     /**
@@ -38,6 +38,14 @@ class User extends ModelBase
     public function getAvatorAttr($value)
     {
         return Oss::convertToEntityData($value);
+    }
+
+    /**
+     * 用户角色一对一
+     */
+    public function roles()
+    {
+        return $this->hasOne(UserRole::class,'uid','id')->bind(['roles']);
     }
 
 }
