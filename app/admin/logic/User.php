@@ -24,7 +24,11 @@ class User extends LogicBase
         empty($data['username']) && exception('用户名不能为空');
         empty($data['password']) && exception('密码不能为空');
 
-        $user = \app\common\model\User::where('username',$data['username'])->find();
+        $user = \app\common\model\User::with(['roles'=> function($query){
+            $query->where([
+                'client' => Client::ADMIN
+            ]);
+        }])->where('username',$data['username'])->find();
         empty($user) && exception('用户不存在');
 
         $commonLogicUser = new \app\common\logic\User();
@@ -32,8 +36,9 @@ class User extends LogicBase
 
         $token = Auth::buildToken($user['id']);
         $loginCacheInfo = [
-            'id'=>$user['id'],
-            'token_uuid'=>$token['uuid']
+            'id' => $user['id'],
+            'token_uuid' => $token['uuid'],
+            'roles' => $user['roles']
         ];
 
         cache(CacheKey::loginAdminToken()->key([$user['id']]),$loginCacheInfo);
@@ -50,17 +55,7 @@ class User extends LogicBase
             ]);
         }])->find($userInfo->id);
 
-        $userInfo['authorities'] = [];
-        if(!empty($userInfo['roles'])){
-            foreach ($userInfo['roles'] as $item){
-                $roleInfo = $this->modelRole->findByCache($item);
-                if(!empty($roleInfo)){
-                    $roleInfo = json_decode(json_encode($roleInfo),true);
-                    $userInfo['authorities'] = array_merge($userInfo['authorities'],$roleInfo['rules']);
-                }
-            }
-        }
-        $userInfo['authorities'] = array_unique($userInfo['authorities']);
+        $userInfo['authorities'] = $userInfo->getAuthoritiesAttr();
 
         return $userInfo;
     }

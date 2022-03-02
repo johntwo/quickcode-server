@@ -3,6 +3,7 @@
 namespace app\common\model;
 
 use app\common\pluings\service\Oss;
+use app\common\traits\GetBase;
 use think\model\concern\SoftDelete;
 
 /**
@@ -48,4 +49,25 @@ class User extends ModelBase
         return $this->hasOne(UserRole::class,'uid','id')->bind(['roles']);
     }
 
+    /**
+     * 获取用户权限
+     */
+    public function getAuthoritiesAttr(){
+        $authorities = [];
+
+        if($this['id'] == 1){
+            return ['admin'];
+        }
+
+        if(!empty($this['roles'])){
+            foreach ($this['roles'] as $item){
+                $roleInfo = app(Role::class,[])->findByCache($item);
+                if(!empty($roleInfo)){
+                    $roleInfo = json_decode(json_encode($roleInfo),true);
+                    $authorities = array_merge($authorities,$roleInfo['rules']);
+                }
+            }
+        }
+        return $authorities;
+    }
 }
